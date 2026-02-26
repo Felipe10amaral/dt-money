@@ -1,3 +1,4 @@
+import { DismissKeyboardView } from '@/Components/DismissKeyboardView'
 import { PublicStackParamList } from '@/routes/PublicRoutes'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -7,11 +8,11 @@ export const Login = () => {
     const navigation = useNavigation<StackNavigationProp<PublicStackParamList>>()
 
     return (
-        <View className='flex-1 items-center justify-center'>
+        <DismissKeyboardView>
             <Text>Login</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                 <Text>Registrar</Text>
             </TouchableOpacity>
-        </View>
+        </DismissKeyboardView>
     )
 }
