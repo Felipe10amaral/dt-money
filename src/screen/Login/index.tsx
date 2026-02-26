@@ -1,4 +1,5 @@
 import { DismissKeyboardView } from '@/Components/DismissKeyboardView'
+import { LoginForm } from '@/Components/LoginForm'
 import { PublicStackParamList } from '@/routes/PublicRoutes'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -9,10 +10,9 @@ export const Login = () => {
 
     return (
         <DismissKeyboardView>
-            <Text>Login</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                <Text>Registrar</Text>
-            </TouchableOpacity>
+            <View className='flex-1 w[82%] self-center'>
+                <LoginForm />
+            </View>
         </DismissKeyboardView>
     )
 }
