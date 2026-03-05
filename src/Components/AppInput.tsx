@@ -13,9 +13,10 @@ interface AppInputParams<T extends FieldValues> extends TextInputProps {
     label?: string;
 }
 
-export const AppInput = <T extends FieldValues>({name, leftIcon, label, control, ...rest}: AppInputParams<T>)  => {
+export const AppInput = <T extends FieldValues>({name, leftIcon, label, control, secureTextEntry, ...rest}: AppInputParams<T>)  => {
     const inputRef = useRef<TextInput>(null)
     const [isFocused, setIsFocused] = useState(false)
+    const [showPassword, setIsPassword] = useState(secureTextEntry)
     
     const checkFocus = () => {
         if( inputRef.current) {
@@ -48,8 +49,20 @@ export const AppInput = <T extends FieldValues>({name, leftIcon, label, control,
                             ref={inputRef}
                             onFocus={checkFocus}
                             onEndEditing={checkFocus}
-                            
+                            secureTextEntry={showPassword}
                         />
+
+                        {
+                            secureTextEntry && (
+                                <TouchableOpacity onPress={() => setIsPassword((value) => !value)}>
+                                    <MaterialIcons 
+                                        name={ showPassword ? "visibility" : "visibility-off" }
+                                        color={colors.gray["600"]}
+                                        size={24}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        }
                     </TouchableOpacity>
                 </View>
             )}}
