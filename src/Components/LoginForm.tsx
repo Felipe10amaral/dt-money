@@ -25,6 +25,7 @@ export const LoginForm = () => {
                 placeholder='senha'
                 leftIcon="lock-outline"
                 secureTextEntry
+                
             />
         </>
     )

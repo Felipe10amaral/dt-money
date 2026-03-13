@@ -1,3 +1,4 @@
+import { AuthHeader } from '@/Components/AuthHeader'
 import { DismissKeyboardView } from '@/Components/DismissKeyboardView'
 import { LoginForm } from '@/Components/LoginForm'
 import { PublicStackParamList } from '@/routes/PublicRoutes'
@@ -11,6 +12,7 @@ export const Login = () => {
     return (
         <DismissKeyboardView>
             <View className='flex-1 w-[82%] self-center'>
+                <AuthHeader />
                 <LoginForm />
             </View>
         </DismissKeyboardView>
