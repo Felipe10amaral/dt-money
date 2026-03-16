@@ -1,6 +1,7 @@
 import {useForm} from 'react-hook-form'
 import { AppInput } from './AppInput'
 import { AppButton } from './AppButton'
+import { View, Text } from 'react-native'
 
 export interface LoginFormParams {
     email: string
@@ -29,7 +30,13 @@ export const LoginForm = () => {
                 
             />
 
-            <AppButton iconName="arrow-right" mode='outline'> Login </AppButton>
+            <View className='flex-1 justify-between mt-8 mb-6 min-h-[250px]'>
+                <AppButton iconName="arrow-right"> Login </AppButton>
+                <View>
+                    <Text className='mb-6 text-gray-300 text-base'> Ainda não possui uma conta? </Text>
+                    <AppButton iconName="arrow-right" mode='outline'> Cadastrar </AppButton>
+                </View>
+            </View>
         </>
     )
 }
