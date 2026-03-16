@@ -1,5 +1,6 @@
 import {useForm} from 'react-hook-form'
 import { AppInput } from './AppInput'
+import { AppButton } from './AppButton'
 
 export interface LoginFormParams {
     email: string
@@ -27,6 +28,8 @@ export const LoginForm = () => {
                 secureTextEntry
                 
             />
+
+            <AppButton iconName="arrow-right" mode='outline'> Login </AppButton>
         </>
     )
 }
