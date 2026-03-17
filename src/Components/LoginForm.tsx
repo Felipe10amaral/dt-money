@@ -1,9 +1,11 @@
 import {useForm} from 'react-hook-form'
+import {yupResolver} from '@hookform/resolvers/yup'
 import { AppInput } from './AppInput'
 import { AppButton } from './AppButton'
 import { View, Text } from 'react-native'
 import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { PublicStackParamList } from '@/routes/PublicRoutes'
+import { loginSchema } from '@/validators/login.screen'
 
 export interface LoginFormParams {
     email: string
@@ -11,7 +13,15 @@ export interface LoginFormParams {
 }
 
 export const LoginForm = () => {
-    const {control, handleSubmit, formState: {isSubmitting}} = useForm<LoginFormParams>()
+    const {control, handleSubmit, formState: {isSubmitting}} = useForm<LoginFormParams>(
+        {
+            defaultValues: {
+                email: "",
+                password: ""
+            },
+            resolver: yupResolver(loginSchema)
+        }
+    )
 
     const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
 

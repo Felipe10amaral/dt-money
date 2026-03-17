@@ -4,6 +4,8 @@ import { AppButton } from "./AppButton";
 import { View, Text } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { PublicStackParamList } from "@/routes/PublicRoutes";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "@/validators/register.schema";
 
 interface FormRegisterParams {
     email: string;
@@ -17,7 +19,18 @@ export const RegisterForm = () => {
     const {control, 
            handleSubmit,
            formState: {isSubmitting}  
-    } = useForm<FormRegisterParams>()
+    } = useForm<FormRegisterParams>({
+        defaultValues: {
+            email: "",
+            name: "",
+            password: "",
+            confirmPassword: ""
+        },
+        resolver: yupResolver(registerSchema)
+    })
+
+    const onSubmit = async () => {}
+
     return(
         <>
             <AppInput
@@ -52,7 +65,7 @@ export const RegisterForm = () => {
             />
 
             <View className='flex-1 justify-between mt-8 mb-6 min-h-[250px]'>
-                <AppButton iconName="arrow-right"> Cadastrar </AppButton>
+                <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-right"> Cadastrar </AppButton>
                 <View>
                     <Text className='mb-6 text-gray-300 text-base'> Já possui uma conta? </Text>
                     <AppButton onPress={() => navigation.navigate("Login")} iconName="arrow-right" mode='outline'> Acessar </AppButton>
