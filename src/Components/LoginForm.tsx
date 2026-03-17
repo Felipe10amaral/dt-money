@@ -2,6 +2,8 @@ import {useForm} from 'react-hook-form'
 import { AppInput } from './AppInput'
 import { AppButton } from './AppButton'
 import { View, Text } from 'react-native'
+import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { PublicStackParamList } from '@/routes/PublicRoutes'
 
 export interface LoginFormParams {
     email: string
@@ -10,6 +12,8 @@ export interface LoginFormParams {
 
 export const LoginForm = () => {
     const {control, handleSubmit, formState: {isSubmitting}} = useForm<LoginFormParams>()
+
+    const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
 
     return (
         <>
@@ -34,7 +38,7 @@ export const LoginForm = () => {
                 <AppButton iconName="arrow-right"> Login </AppButton>
                 <View>
                     <Text className='mb-6 text-gray-300 text-base'> Ainda não possui uma conta? </Text>
-                    <AppButton iconName="arrow-right" mode='outline'> Cadastrar </AppButton>
+                    <AppButton onPress={() => navigation.navigate("Register")} iconName="arrow-right" mode='outline'> Cadastrar </AppButton>
                 </View>
             </View>
         </>
