@@ -23,6 +23,8 @@ export const LoginForm = () => {
         }
     )
 
+    const onSubmit = async () => {}
+
     const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
 
     return (
@@ -45,7 +47,7 @@ export const LoginForm = () => {
             />
 
             <View className='flex-1 justify-between mt-8 mb-6 min-h-[250px]'>
-                <AppButton iconName="arrow-right"> Login </AppButton>
+                <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-right"> Login </AppButton>
                 <View>
                     <Text className='mb-6 text-gray-300 text-base'> Ainda não possui uma conta? </Text>
                     <AppButton onPress={() => navigation.navigate("Register")} iconName="arrow-right" mode='outline'> Cadastrar </AppButton>

@@ -5,6 +5,7 @@ import { FieldValues, Path, Control, Controller } from "react-hook-form";
 import { Text, TextInput, TextInputProps, TouchableOpacity, View } from "react-native";
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
+import { ErrorMessage } from './ErrorMessage';
 
 interface AppInputParams<T extends FieldValues> extends TextInputProps {
     control: Control<T>;
@@ -28,7 +29,7 @@ export const AppInput = <T extends FieldValues>({name, leftIcon, label, control,
         <Controller 
             control={control}
             name={name}
-            render={ ({field: {value, onChange } }) => { return (
+            render={ ({field: {value, onChange }, fieldState: {error} }) => { return (
                 <View className='w-full mt-4'>
                     { label && <Text className={clsx("mb-2 mt-3 text-base", isFocused ? "text-accent-brand" : "text-gray-600")} >{label}</Text> }
 
@@ -64,6 +65,9 @@ export const AppInput = <T extends FieldValues>({name, leftIcon, label, control,
                             )
                         }
                     </TouchableOpacity>
+                    {
+                        error && <ErrorMessage>{error.message}</ErrorMessage>
+                    }
                 </View>
             )}}
         />
