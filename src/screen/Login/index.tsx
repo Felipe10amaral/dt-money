@@ -1,13 +1,11 @@
+import {View} from 'react-native'
 import { AuthHeader } from '@/Components/AuthHeader'
 import { DismissKeyboardView } from '@/Components/DismissKeyboardView'
 import { LoginForm } from '@/Components/LoginForm'
-import { PublicStackParamList } from '@/routes/PublicRoutes'
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
-import {View, Text, TouchableOpacity} from 'react-native'
+import { useAuthContext } from '@/context/auth.context'
 
 export const Login = () => {
-    const navigation = useNavigation<StackNavigationProp<PublicStackParamList>>()
+    const {user} = useAuthContext()
 
     return (
         <DismissKeyboardView>
