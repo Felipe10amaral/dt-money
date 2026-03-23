@@ -1,9 +1,11 @@
+import { createContext, FC, PropsWithChildren, useContext, useState } from "react";
+import * as authService from "@/services/AuthServices"
 import { LoginFormParams } from "@/Components/LoginForm";
 import { FormRegisterParams } from "@/Components/RegisterForm";
-import { createContext, FC, PropsWithChildren, useContext, useState } from "react";
+import { IUser } from "@/interface/IUserInterface";
 
 type AuthContextType = {
-    user: null
+    user: IUser | null
     token: string | null
     handleAuthenticate: (params: LoginFormParams) => Promise<void>
     handleRegister: (params: FormRegisterParams) => Promise<void>
@@ -13,10 +15,14 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType>( {} as AuthContextType)
 
 export const AuthContextProvider: FC<PropsWithChildren> = ({children}) => {
-    const [user, setUser] = useState(null)
-    const [token, setToken] = useState(null)
+    const [user, setUser] = useState<IUser | null>(null)
+    const [token, setToken] = useState<string | null>(null)
 
-    const handleAuthenticate = async ({ email, password}: LoginFormParams) => {}
+    const handleAuthenticate = async ( userData : LoginFormParams) => {
+        const {token, user} = await authService.authenticate(userData)
+        setToken(token)
+        setUser(user)
+    }
 
     const handleRegister = async (formData: FormRegisterParams) => {}
 
