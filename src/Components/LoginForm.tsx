@@ -6,6 +6,8 @@ import { View, Text } from 'react-native'
 import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { PublicStackParamList } from '@/routes/PublicRoutes'
 import { loginSchema } from '@/validators/login.screen'
+import { useAuthContext } from '@/context/auth.context'
+import { AxiosError } from 'axios'
 
 export interface LoginFormParams {
     email: string
@@ -23,7 +25,18 @@ export const LoginForm = () => {
         }
     )
 
-    const onSubmit = async () => {}
+    const {handleAuthenticate} = useAuthContext()
+
+    const onSubmit = async (userData: LoginFormParams) => {
+        try {
+            await handleAuthenticate(userData)
+        } catch (error) {
+            if(error instanceof AxiosError) {
+                console.log(error.response?.data)
+            }
+            
+        }
+    }
 
     const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
 
