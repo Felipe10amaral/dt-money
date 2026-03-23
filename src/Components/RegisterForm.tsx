@@ -6,6 +6,8 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { PublicStackParamList } from "@/routes/PublicRoutes";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@/validators/register.schema";
+import { AxiosError } from "axios";
+import { useAuthContext } from "@/context/auth.context";
 
 export interface FormRegisterParams {
     email: string;
@@ -16,6 +18,7 @@ export interface FormRegisterParams {
 
 export const RegisterForm = () => {
     const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
+    const {handleRegister} = useAuthContext()
     const {control, 
            handleSubmit,
            formState: {isSubmitting}  
@@ -29,7 +32,16 @@ export const RegisterForm = () => {
         resolver: yupResolver(registerSchema)
     })
 
-    const onSubmit = async () => {}
+    const onSubmit = async (userData: FormRegisterParams) => {
+        try {
+            await handleRegister(userData)
+        } catch (error) {
+            if(error instanceof AxiosError) {
+                console.log(error.response?.data)
+            }
+            
+        }
+    }
 
     return(
         <>
