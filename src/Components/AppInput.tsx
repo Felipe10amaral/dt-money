@@ -43,7 +43,7 @@ export const AppInput = <T extends FieldValues>({name, leftIcon, label, control,
                             />}
                         <TextInput 
                             value={value} 
-                            onChange={onChange} 
+                            onChangeText={onChange} 
                             {...rest} 
                             placeholderTextColor={colors.gray["700"]} 
                             className='flex-1 text-base text-gray-500'
