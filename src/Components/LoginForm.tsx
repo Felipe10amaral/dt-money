@@ -8,6 +8,8 @@ import { PublicStackParamList } from '@/routes/PublicRoutes'
 import { loginSchema } from '@/validators/login.screen'
 import { useAuthContext } from '@/context/auth.context'
 import { AxiosError } from 'axios'
+import { AppError } from '@/Errors/AppError'
+import { UseSnackbarContext } from '@/context/snackbar.context'
 
 export interface LoginFormParams {
     email: string
@@ -26,13 +28,17 @@ export const LoginForm = () => {
     )
 
     const {handleAuthenticate} = useAuthContext()
+    const {notify} = UseSnackbarContext()
 
     const onSubmit = async (userData: LoginFormParams) => {
         try {
             await handleAuthenticate(userData)
         } catch (error) {
-            if(error instanceof AxiosError) {
-                console.log(error.response?.data)
+            if(error instanceof AppError) {
+                notify({
+                    message: error.message,
+                    messageType: "Error"
+                })
             }
             
         }
