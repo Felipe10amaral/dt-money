@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import { AppInput } from "./AppInput";
 import { AppButton } from "./AppButton";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { PublicStackParamList } from "@/routes/PublicRoutes";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@/validators/register.schema";
 import { AxiosError } from "axios";
 import { useAuthContext } from "@/context/auth.context";
+import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
+import { colors } from "@/shared/colors";
 
 export interface FormRegisterParams {
     email: string;
@@ -19,6 +21,7 @@ export interface FormRegisterParams {
 export const RegisterForm = () => {
     const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
     const {handleRegister} = useAuthContext()
+    const {handleError} = useErrorHandler()
     const {control, 
            handleSubmit,
            formState: {isSubmitting}  
@@ -36,9 +39,7 @@ export const RegisterForm = () => {
         try {
             await handleRegister(userData)
         } catch (error) {
-            if(error instanceof AxiosError) {
-                console.log(error.response?.data)
-            }
+            handleError(error, "Erro ao registrar usuário")
             
         }
     }
@@ -77,7 +78,14 @@ export const RegisterForm = () => {
             />
 
             <View className='flex-1 justify-between mt-8 mb-6 min-h-[250px]'>
-                <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-right"> Cadastrar </AppButton>
+                <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-right">
+                      {
+                        isSubmitting ? (
+                            <ActivityIndicator color={colors.white} />
+                        ) : (" Cadastrar ")
+                      }
+                </AppButton>
+                
                 <View>
                     <Text className='mb-6 text-gray-300 text-base'> Já possui uma conta? </Text>
                     <AppButton onPress={() => navigation.navigate("Login")} iconName="arrow-right" mode='outline'> Acessar </AppButton>
