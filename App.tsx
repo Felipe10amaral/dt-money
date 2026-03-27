@@ -4,13 +4,16 @@ import { AuthContextProvider } from '@/context/auth.context';
 import { SnackbarContextProvider } from '@/context/snackbar.context';
 import { Snackbar } from '@/Components/Snackbar';
 import { Home } from '@/screen/Home';
+import { BottomSheetProvider } from '@/context/bottomSheet.context';
 
 export default function App() {
   return (
     <SnackbarContextProvider>
        <AuthContextProvider>
+        <BottomSheetProvider>
          <Home />
          <Snackbar />
+        </BottomSheetProvider>
        </AuthContextProvider>
     </SnackbarContextProvider>
   );
