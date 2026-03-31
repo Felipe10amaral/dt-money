@@ -5,9 +5,11 @@ import { SnackbarContextProvider } from '@/context/snackbar.context';
 import { Snackbar } from '@/Components/Snackbar';
 import { Home } from '@/screen/Home';
 import { BottomSheetProvider } from '@/context/bottomSheet.context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   return (
+   <GestureHandlerRootView className='flex-1'> 
     <SnackbarContextProvider>
        <AuthContextProvider>
         <BottomSheetProvider>
@@ -16,5 +18,6 @@ export default function App() {
         </BottomSheetProvider>
        </AuthContextProvider>
     </SnackbarContextProvider>
+   </GestureHandlerRootView>
   );
 }
