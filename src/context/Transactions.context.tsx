@@ -12,7 +12,7 @@ export const TransactionContext = createContext({} as TransactionsContextType);
 export const TransactionsProvider: FC<PropsWithChildren> = ({children}) => {
 
     const [categories, setCategories] = useState<ITransactionsCategory[]>([])
-
+    console.log(categories)
     const fetchCategories = async () => {
         const categoriesResponse = await transactionsServices.getTransactionsCategories()
         setCategories(categoriesResponse)

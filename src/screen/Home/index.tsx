@@ -20,12 +20,15 @@ export const Home = () => {
         }
 
     useEffect( () => {
-        (async () => {})
+        (async () => {
+            await handleFetchCategories()
+        })
     }, [])
     
     return (
         <SafeAreaView className="flex-1 bg-background-primary">
             <AppHeader />
+            <Text>Home</Text>
         </SafeAreaView>
     )
 }

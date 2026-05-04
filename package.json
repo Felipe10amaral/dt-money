@@ -19,6 +19,7 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "clsx": "^2.1.1",
     "expo": "~54.0.33",
+    "expo-checkbox": "^55.0.4",
     "expo-status-bar": "~3.0.9",
     "expo-system-ui": "^6.0.9",
     "nativewind": "^4.2.2",

@@ -7,6 +7,7 @@ import { colors } from '@/shared/colors'
 import { useBottomSheetContext } from '@/context/bottomSheet.context'
 import CurrencyInput from 'react-native-currency-input'
 import { TransactionsTypeSelect } from './SelectType'
+import { SelectCategoryModal } from './SelectCategoryModal'
 
 export const NewTransactions = () => {
     const {closeBottomSheet} = useBottomSheetContext()
@@ -50,6 +51,13 @@ export const NewTransactions = () => {
                     precision={2}
                     minValue={0}
                     onChangeValue={(value) => setTransactionsData("value", value ?? 0)}
+                />
+
+                <SelectCategoryModal 
+                    selectedCategory={transactions.categoryId}
+                    onSelect={(categoryId) =>
+                        setTransactionsData("categoryId", categoryId)
+                    }
                 />
 
                 <TransactionsTypeSelect 
