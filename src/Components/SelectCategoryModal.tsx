@@ -11,7 +11,7 @@ interface Props {
 
 export const SelectCategoryModal: FC<Props> = ({ selectedCategory, onSelect }) => {
     const [showModal, setShowModal] = useState(false)
-    console.log(showModal)
+   
 
     const {categories} = useTransactionsContext()
     console.log(categories)

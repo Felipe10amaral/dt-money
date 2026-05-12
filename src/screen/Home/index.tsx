@@ -28,7 +28,10 @@ export const Home = () => {
     return (
         <SafeAreaView className="flex-1 bg-background-primary">
             <AppHeader />
-            <Text>Home</Text>
+            <Text>HomeScreen</Text>
+            <TouchableOpacity onPress={handleLogout}>
+                <Text>Sair</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }
