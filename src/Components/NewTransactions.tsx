@@ -31,13 +31,13 @@ export const NewTransactions = () => {
                 onPress={closeBottomSheet}
             >
                 <Text className='text-white text-xl font-bold'>Nova Transação</Text>
-                <MaterialIcons name="close" color={colors.gray["700"]} size={20} />
+                <MaterialIcons name="close" color={colors.gray[700]} size={20} />
             </TouchableOpacity>
-            <View className='flex-1 mt-8 mb-8'>
+            <View className='flex-1 my-8'>
                 <TextInput 
                     className='text-white text-lg bg-background-primary my-2 rounded-lg-[6] pl-4 h-[50px]' 
                     placeholder='Descrição'
-                    placeholderTextColor={colors.gray["700"]}
+                    placeholderTextColor={colors.gray[700]}
                     value={transactions.description}
                     onChangeText={(text) => setTransactionsData("description", text)}
                 />
@@ -55,8 +55,7 @@ export const NewTransactions = () => {
 
                 <SelectCategoryModal 
                     selectedCategory={transactions.categoryId}
-                    onSelect={(categoryId) =>
-                        setTransactionsData("categoryId", categoryId)
+                    onSelect={(categoryId) => setTransactionsData("categoryId", categoryId)
                     }
                 />
 

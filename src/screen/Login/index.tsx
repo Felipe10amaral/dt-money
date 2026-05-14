@@ -2,10 +2,13 @@ import {View} from 'react-native'
 import { AuthHeader } from '@/Components/AuthHeader'
 import { DismissKeyboardView } from '@/Components/DismissKeyboardView'
 import { LoginForm } from '@/Components/LoginForm'
-import { useAuthContext } from '@/context/auth.context'
+
+export type PublicStackParamList = {
+    Login: undefined;
+    Register: undefined;
+}
 
 export const Login = () => {
-    const {user} = useAuthContext()
 
     return (
         <DismissKeyboardView>

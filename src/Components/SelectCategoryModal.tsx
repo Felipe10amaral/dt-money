@@ -12,12 +12,20 @@ interface Props {
 export const SelectCategoryModal: FC<Props> = ({ selectedCategory, onSelect }) => {
     const [showModal, setShowModal] = useState(false)
    
-
     const {categories} = useTransactionsContext()
+    
     console.log(categories)
+    
     const handleModal = () => setShowModal( (prevState) => !prevState)
 
-    const selected = useMemo( () => categories.find(({id}) => id === selectedCategory), [selectedCategory, categories])
+    const selected = useMemo( () => {
+        return categories.find( (category) => category.id === selectedCategory)
+    }, [selectedCategory, categories])
+
+    const handleSelect = (categoryId: number) => {
+        onSelect(categoryId)
+        setShowModal(false)
+    }
     
     return (
         <>
@@ -39,16 +47,16 @@ export const SelectCategoryModal: FC<Props> = ({ selectedCategory, onSelect }) =
                             <Text className="text-gray-700 text-lg mb-4">Selecione uma categoria</Text>
 
                             <FlatList 
-                                keyExtractor={item => item.id.toString()}
+                                keyExtractor={(item) => `category-${item.id}`}
                                 data={categories}
                                 renderItem={ ({item}) => (
-                                    <TouchableOpacity className="flex-row items-center mb-2 bg-gray-800 rounded-lg p-4">
+                                    <TouchableOpacity 
+                                        className="flex-row items-center mb-2 bg-gray-800 rounded-lg p-4"
+                                        onPress={() => handleSelect(item.id)}   
+                                    >
                                         <Checkbox 
                                             value={selected?.id === item.id}
-                                            onValueChange={() => {
-                                                onSelect(item.id)
-                                                setShowModal(false)
-                                            }}
+                                            onValueChange={() =>  handleSelect(item.id)}
                                             className="mr-2"
                                         />
                                         <Text className="text-white text-lg">{item.name}</Text>

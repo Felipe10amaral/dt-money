@@ -13,21 +13,19 @@ export const TransactionsProvider: FC<PropsWithChildren> = ({children}) => {
 
     const [categories, setCategories] = useState<ITransactionsCategory[]>([])
     
-    console.log(categories)
+    console.log(categories, "passou aqui54545")
     
     const fetchCategories = async () => {
+        
         const categoriesResponse = await transactionsServices.getTransactionsCategories()
-        console.log(categoriesResponse, "response categories")
+        
         setCategories(categoriesResponse)
     };
 
+    console.log(fetchCategories, "fetch categories aqui")
+
     return (
-        <TransactionContext.Provider
-            value={{
-                categories,
-                fetchCategories
-            }}
-        >
+        <TransactionContext.Provider value={{ categories, fetchCategories }}>
             {children}
         </TransactionContext.Provider>
     )

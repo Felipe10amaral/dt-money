@@ -12,7 +12,10 @@ export const dtMoneyAPI = axios.create({
     baseURL
 })
 
+console.log(baseURL, "baseURL")
+
 addTokenToRequest(dtMoneyAPI)
+
 
 dtMoneyAPI.interceptors.response.use(
     (config) => config,

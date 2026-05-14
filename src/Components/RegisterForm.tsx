@@ -6,7 +6,6 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { PublicStackParamList } from "@/routes/PublicRoutes";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@/validators/register.schema";
-import { AxiosError } from "axios";
 import { useAuthContext } from "@/context/auth.context";
 import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
 import { colors } from "@/shared/colors";
@@ -20,8 +19,10 @@ export interface FormRegisterParams {
 
 export const RegisterForm = () => {
     const navigation = useNavigation<NavigationProp<PublicStackParamList>>()
+    
     const {handleRegister} = useAuthContext()
     const {handleError} = useErrorHandler()
+    
     const {control, 
            handleSubmit,
            formState: {isSubmitting}  

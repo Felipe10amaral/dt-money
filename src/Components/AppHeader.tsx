@@ -8,7 +8,7 @@ import { NewTransactions } from './NewTransactions'
 
 export const AppHeader = () => {
     const {handleLogout} = useAuthContext()
-    const {closeBottomSheet, openBottomSheet} = useBottomSheetContext()
+    const {openBottomSheet} = useBottomSheetContext()
 
     return (
         <View className="w-full flex-row p-8 justify-between">

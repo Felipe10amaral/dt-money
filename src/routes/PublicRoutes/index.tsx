@@ -1,6 +1,5 @@
 import { Login } from '@/screen/Login';
 import { Register } from '@/screen/Register';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack'
 
 export type PublicStackParamList = {

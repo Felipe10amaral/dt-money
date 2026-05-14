@@ -34,7 +34,7 @@ export const AppButton: FC<PropsWithChildren<AppButtonParams>> = ( {children, mo
             </Text>
 
             {
-                iconName && <MaterialIcons name={iconName} size={24} color={isFill ? colors.white : colors["accent-brand"]} /> 
+                iconName && ( <MaterialIcons name={iconName} size={24} color={isFill ? colors.white : colors["accent-brand"]} /> ) 
             }
         </TouchableOpacity>
     )

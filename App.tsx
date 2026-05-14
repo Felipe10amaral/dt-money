@@ -15,9 +15,9 @@ export default function App() {
        <AuthContextProvider>
         <TransactionsProvider>
           <BottomSheetProvider>
-          <NavigationRoutes />
-         <Snackbar />
-        </BottomSheetProvider>
+            <NavigationRoutes />
+            <Snackbar />
+          </BottomSheetProvider>
         </TransactionsProvider> 
        </AuthContextProvider>
     </SnackbarContextProvider>

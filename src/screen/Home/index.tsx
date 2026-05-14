@@ -22,7 +22,7 @@ export const Home = () => {
     useEffect( () => {
         (async () => {
             await handleFetchCategories()
-        })
+        })()
     }, [])
     
     return (

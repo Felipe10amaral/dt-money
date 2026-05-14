@@ -64,7 +64,7 @@ export const LoginForm = () => {
                      {
                         isSubmitting ? (
                             <ActivityIndicator color={colors.white} />
-                          ) : (" Login ")
+                          ) : " Login "
                     } 
                 </AppButton>
                 

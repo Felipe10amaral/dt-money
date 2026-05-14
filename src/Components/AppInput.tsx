@@ -29,7 +29,8 @@ export const AppInput = <T extends FieldValues>({name, leftIcon, label, control,
         <Controller 
             control={control}
             name={name}
-            render={ ({field: {value, onChange }, fieldState: {error} }) => { return (
+            render={ ({field: {value, onChange }, fieldState: {error} }) => { 
+                return (
                 <View className='w-full mt-4'>
                     { label && <Text className={clsx("mb-2 mt-3 text-base", isFocused ? "text-accent-brand" : "text-gray-600")} >{label}</Text> }
 
@@ -44,13 +45,13 @@ export const AppInput = <T extends FieldValues>({name, leftIcon, label, control,
                         <TextInput 
                             value={value} 
                             onChangeText={onChange} 
-                            {...rest} 
                             placeholderTextColor={colors.gray["700"]} 
                             className='flex-1 text-base text-gray-500'
                             ref={inputRef}
                             onFocus={checkFocus}
                             onEndEditing={checkFocus}
                             secureTextEntry={showPassword}
+                            {...rest} 
                         />
 
                         {

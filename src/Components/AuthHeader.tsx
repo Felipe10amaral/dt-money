@@ -2,9 +2,9 @@ import { useKeyboardView } from "@/shared/hooks/useKeyboardView"
 import { Image, View } from "react-native"
 
 export const AuthHeader = () => {
-    const keuboardVisible = useKeyboardView()
+    const keyboardVisible = useKeyboardView()
 
-    if (keuboardVisible) {
+    if (keyboardVisible) {
         return <></>
     }
     return (
